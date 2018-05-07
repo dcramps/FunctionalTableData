@@ -16,6 +16,7 @@ public class Separator: UIView {
 		case full
 		case inset
 		case moreInset
+    case custom(CGFloat)
 		
 		public var insetDistance: CGFloat {
 			switch self {
@@ -25,6 +26,8 @@ public class Separator: UIView {
 				return 0
 			case .moreInset:
 				return 3 * Separator.inset
+      case .custom(let inset):
+        return inset
 			}
 		}
 	}
@@ -71,7 +74,10 @@ public class Separator: UIView {
 			leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: style.insetDistance).isActive = true
 		case .inset:
 			leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor).isActive = true
-		}
+    case .custom(_):
+      leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: style.insetDistance).isActive = true
+      trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -style.insetDistance).isActive = true
+    }
 	}
 }
 
