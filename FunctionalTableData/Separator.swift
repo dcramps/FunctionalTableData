@@ -12,7 +12,7 @@ public class Separator: UIView {
 	public static var inset: CGFloat = 0.0
 	private let thickness: CGFloat = 1.0 / UIScreen.main.scale
 	
-	public enum Style {
+  public enum Style: Equatable {
 		case full
 		case inset
 		case moreInset
